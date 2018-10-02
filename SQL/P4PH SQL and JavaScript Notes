@@ -9,7 +9,7 @@ WHERE 1=1 --The scenario/condition will always be TRUE.
       ( VALID_UNTIL_TMS IS NULL OR VALID_UNTIL_TMS > ? ) <# --End of JavaScript.
     }
   #>
-
+//test
   SELECT * FROM
     <#=String(tw.epv.Database_Config.schemaName_ApplicationData)#>.REF_LOCATIONS
   WHERE 1=1
