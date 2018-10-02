@@ -24,13 +24,13 @@ INSERT INTO FGC_PROJ_HOURS_DEV.REQUEST_DETAILS --Inserting data into table
 ( REQUEST_BY_ID, REQUEST_TMS, LOCATION_ID, EVENT_DATE,
   PROJECT_NAME, HOURS_CLAIMED, EVENT_DESCRIPTION, PROJECT_MANAGER_ID, REQUEST_ID ) --Columns to insert data into
 VALUES (
-  '600520D',    --REQUEST_BY_ID
-  '2018-04-02 11:30:00.000', --REQUEST_TMS
+  '600520D',                              --REQUEST_BY_ID
+  '2018-04-02 11:30:00.000',              --REQUEST_TMS
   '4119b21b-f849-4666-957d-1c2358d1e7a5', --LOCATION_ID
-  '2018-06-03', --EVENT_DATE
-  'SHQ Refurb', --PROJECT_NAME
-  '3',          --HOURS_CLAIMED
-  'An abundance of information..', --EVENT_DESCRIPTION
-  '6002KD',     --PROJECT_MANAGER_ID
-  '9be783f8-a5d0-4e73-b5a6-25e76005c4c0' --REQUEST_ID
+  '2018-06-03',                           --EVENT_DATE
+  'SHQ Refurb',                           --PROJECT_NAME
+  '3',                                    --HOURS_CLAIMED
+  'An abundance of information..',        --EVENT_DESCRIPTION
+  '6002KD',                               --PROJECT_MANAGER_ID
+  '9be783f8-a5d0-4e73-b5a6-25e76005c4c0'  --REQUEST_ID
   );
