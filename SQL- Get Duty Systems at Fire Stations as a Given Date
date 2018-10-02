@@ -1,0 +1,112 @@
+var tmpFireStationId;
+var tmpVal;
+var cD;
+var nD;
+
+var cS = 0;
+var nS = tw.local.resultsetNodeList.length;
+//For each resultSet node (Station/Premises), we should have zero or more Record nodes,
+//which will be our Duty System objects for that station.
+//This creates the need to loop within a loop.
+//1) Loop over our resultSet nodes (our fire stations):-
+while( cS < nS ) {
+  //get our fire station from our input list.
+  //this is because each resultSet could be empty.
+  //It is OK to mix our use of variables here because resultset's list is expected to mirror our inputted list.
+  tmpFireStationId = tw.local.fireStationIDs[cS];
+
+  tw.local.stations[cS] = new tw.object.DutySystems_at_FireStation();
+  tw.local.stations[cS].fireStationId = tmpFireStationId;
+  tw.local.stations[cS].dutySystems = new tw.object.listOf.DUTY_SYSTEM(); //default to empty list, not null.
+
+  //if our station has no duty systems we get a self-closing "resultSet" node.
+  //If so, continue to the next resultSet node...
+  if( false == tw.local.resultsetNodeList.item(cS).hasChildNodes() ) {
+    ++cS;
+    continue;
+  }
+
+  //to this point we should be looking at a "resultSet" node that DOES have child elements.
+  //This is expected to be one or more "record" nodes.
+  //Within the scope of this resultSet, all these records WILL be for the same premises (fire station ID).
+  //So, we loop over them and add them to our current station's list of systems:-
+  tw.local.recordNodeList = tw.local.resultsetNodeList.item(cS).xpath('/resultSet/record');
+  cD = 0;
+  nD = tw.local.recordNodeList.length;
+  //2) Loop over our record nodes (our duty systems within the current fire station):-
+  while( cD < nD ) {
+    tw.local.recordElem = tw.local.recordNodeList.item(cD);
+
+
+    //now extract value from the current duty system
+    tw.local.stations[cS].dutySystems[cD] = new tw.object.DUTY_SYSTEM();
+
+    tmpVal = fgcXml.getElementTextFromNodeUsingXPath( tw.local.recordElem, '/record/column[@name="DS_ID"]' );
+    tw.local.stations[cS].dutySystems[cD].id = ( typeof tmpVal == 'string' ? tmpVal.trim() : null );
+
+    tmpVal = fgcXml.getElementTextFromNodeUsingXPath( tw.local.recordElem, '/record/column[@name="DS_ACRONYM"]' );
+    tw.local.stations[cS].dutySystems[cD].acronym = ( typeof tmpVal == 'string' ? tmpVal.trim() : null );
+
+    tmpVal = fgcXml.getElementTextFromNodeUsingXPath( tw.local.recordElem, '/record/column[@name="DS_NAME_SHORT"]' );
+    tw.local.stations[cS].dutySystems[cD].nameShort = ( typeof tmpVal == 'string' ? tmpVal.trim() : null );
+
+    tmpVal = fgcXml.getElementTextFromNodeUsingXPath( tw.local.recordElem, '/record/column[@name="DS_NAME_FULL"]' );
+    tw.local.stations[cS].dutySystems[cD].nameFull = ( typeof tmpVal == 'string' ? tmpVal.trim() : null );
+
+    tmpVal = fgcXml.getElementTextFromNodeUsingXPath( tw.local.recordElem, '/record/column[@name="DS_DESC"]' );
+    tw.local.stations[cS].dutySystems[cD].description = ( typeof tmpVal == 'string' ? tmpVal.trim() : null );
+
+    tmpVal = fgcXml.getElementTextFromNodeUsingXPath( tw.local.recordElem, '/record/column[@name="VALID_FROM_TMS"]' );
+    if( typeof tmpVal == 'string' && tmpVal.trim() != '' ) {
+      tmpVal = tmpVal.replace( ' ', 'T' );
+      tw.local.stations[cS].dutySystems[cD].validFromTms = fgcTime.fromIsoString(tmpVal);
+    }
+    else {
+      tw.local.stations[cS].dutySystems[cD].validFromTms = null;
+    }
+
+    tmpVal = fgcXml.getElementTextFromNodeUsingXPath( tw.local.recordElem, '/record/column[@name="VALID_TO_TMS"]' );
+    if( typeof tmpVal == 'string' && tmpVal.trim() != '' ) {
+      tmpVal = tmpVal.replace( ' ', 'T' );
+      tw.local.stations[cS].dutySystems[cD].validToTms = fgcTime.fromIsoString(tmpVal);
+    }
+    else {
+      tw.local.stations[cS].dutySystems[cD].validToTms = null;
+    }
+
+    tmpVal = fgcXml.getElementTextFromNodeUsingXPath( tw.local.recordElem, '/record/column[@name="ADDED_TMS"]' );
+    if( typeof tmpVal == 'string' && tmpVal.trim() != '' ) {
+      tmpVal = tmpVal.replace( ' ', 'T' );
+      tw.local.stations[cS].dutySystems[cD].addedTms = fgcTime.fromIsoString(tmpVal);
+    }
+    else {
+      tw.local.stations[cS].dutySystems[cD].addedTms = null;
+    }
+
+    tmpVal = fgcXml.getElementTextFromNodeUsingXPath( tw.local.recordElem, '/record/column[@name="ADDED_BY"]' );
+    tw.local.stations[cS].dutySystems[cD].addedBy = ( typeof tmpVal == 'string' ? tmpVal.trim() : null );
+
+
+    tmpVal = fgcXml.getElementTextFromNodeUsingXPath( tw.local.recordElem, '/record/column[@name="XREF_FROM_TMS"]' );
+    if( typeof tmpVal == 'string' && tmpVal.trim() != '' ) {
+      tmpVal = tmpVal.replace( ' ', 'T' );
+      tw.local.stations[cS].dutySystems[cD].attachedStationHasThisFromTms = fgcTime.fromIsoString(tmpVal);
+    }
+    else {
+      tw.local.stations[cS].dutySystems[cD].attachedStationHasThisFromTms = null;
+    }
+
+    tmpVal = fgcXml.getElementTextFromNodeUsingXPath( tw.local.recordElem, '/record/column[@name="XREF_TO_TMS"]' );
+    if( typeof tmpVal == 'string' && tmpVal.trim() != '' ) {
+      tmpVal = tmpVal.replace( ' ', 'T' );
+      tw.local.stations[cS].dutySystems[cD].attachedStationHasThisToTms = fgcTime.fromIsoString(tmpVal);
+    }
+    else {
+      tw.local.stations[cS].dutySystems[cD].attachedStationHasThisToTms = null;
+    }
+
+    ++cD;
+  } //end loop over record nodes (duty systems) in this resultSet (current fire station).
+
+  ++cS;
+} //end loop over resultSet nodes (fire stations)

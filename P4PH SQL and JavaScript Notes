@@ -1,0 +1,39 @@
+--"BPM SQL - Get Locations as at TMS" --> "Set SQL".
+SELECT * FROM
+  <#=String(tw.epv.Database_Config.schemaName_ApplicationData)#>.REF_LOCATIONS
+WHERE 1=1 --The scenario/condition will always be TRUE.
+  <# if ( tw.local.asAtTMS ) //Embedded JavaScript to reference the (TMS) TIMESTAMP.
+    {
+      #> AND VALID_FROM_TMS <= ? AND //'AND' = used for a statement with more than one condition.
+      --'<=' = less than or equal to | '?'=parameterised statement; executes the same statements repeatedly.
+      ( VALID_UNTIL_TMS IS NULL OR VALID_UNTIL_TMS > ? ) <# --End of JavaScript.
+    }
+  #>
+
+  SELECT * FROM
+    <#=String(tw.epv.Database_Config.schemaName_ApplicationData)#>.REF_LOCATIONS
+  WHERE 1=1
+    <# if ( tw.local.asAtTMS )
+      {
+        #> AND VALID_FROM_TMS <= ? AND ( VALID_UNTIL_TMS IS NULL OR VALID_UNTIL_TMS > ? ) <#
+      }
+    #>
+
+
+--Data Studio - SQL Statement to insert data into the REF_LOCATIONS columns:
+INSERT INTO FGC_PROJ_HOURS_DEV.REF_LOCATIONS //Inserting data into table
+( LOCATION_ID, LOCATION_NAME, CREATED_BY, VALID_FROM_TMS ) //Columns to insert data into
+VALUES
+( '4119b21b-f849-4666-957d-1c2358d1e7a5'
+  'Over here',
+  '600520D'
+  '2018-04-02 11:30:00.000' );
+--------------------------------------------------------------------------------------------
+  SELECT * FROM
+    <#=String(tw.epv.Database_Config.schemaName_ApplicationData)#>.REF_LOCATIONS
+  WHERE 1=1
+    <# if ( tw.local.asAtTMS )
+      {
+        #> AND VALID_FROM_TMS <= ? AND ( VALID_UNTIL_TMS IS NULL OR VALID_UNTIL_TMS > ? ) <#
+      }
+    #>
