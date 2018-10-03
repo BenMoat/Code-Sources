@@ -41,10 +41,25 @@ INSERT INTO FGC_PROJ_HOURS_DEV.REF_LOCATIONS
 VALUES (
   '55846354-dd30-42c1-b348-7164c60519bf', --LOCATION_ID
   'Burwell',                              --LOCATION_NAME
-  '600520D',                                     --CREATED_BY
+  '600520D',                              --CREATED_BY
   '2018-04-02 11:30:00.0',                --CREATED_TMS
-  '2018-04-02 11:30:00.0'                                      --VALID_FROM_TMS
+  '2018-04-02 11:30:00.0'                 --VALID_FROM_TMS
 );
+------------------------------------------------------------------------------------------------
+--Data Studio - SQL Statement to insert data into the REF_LOCATIONS columns;
+INSERT INTO FGC_PROJ_HOURS_DEV.TASK_OUTCOMES
+( DECISION_ID, DECISION_BY_ID, DECISION_TMS, DECISION_STAGE, DECISION_NOTES, REQUEST_ID )
+VALUES (
+  '091a8f96-cbb3-4594-8881-72b57ed545e1', --DECISION_ID
+  '600520D',                              --DECISION_BY_ID
+  '2018-04-02 11:30:00.000',              --DECISION_TMS
+  'Review Request',                       --DECISION_STAGE
+  "Couldn't accept the request",          --DECISION_NOTES
+  '9be783f8-a5d0-4e73-b5a6-25e76005c4c0'  --REQUEST_ID - This ID needs to be the same as its a foreign key in this table
+);
+
+
+
 
 
 
