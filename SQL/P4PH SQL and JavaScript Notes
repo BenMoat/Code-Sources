@@ -19,7 +19,7 @@ WHERE 1=1 --The scenario/condition will always be TRUE.
         }
       #>
 -------------------------------------------------------------------------------------------------
---Data Studio - SQL Statement to insert data into the REF_LOCATIONS columns:
+--Data Studio - SQL Statement to insert data into the REQUEST_DETAILS columns:
 INSERT INTO FGC_PROJ_HOURS_DEV.REQUEST_DETAILS --Inserting data into table
 ( REQUEST_BY_ID, REQUEST_TMS, LOCATION_ID, EVENT_DATE,
   PROJECT_NAME, HOURS_CLAIMED, EVENT_DESCRIPTION, PROJECT_MANAGER_ID, REQUEST_ID ) --Columns to insert data into
@@ -34,3 +34,19 @@ VALUES (
   '6002KD',                               --PROJECT_MANAGER_ID
   '9be783f8-a5d0-4e73-b5a6-25e76005c4c0'  --REQUEST_ID
   );
+------------------------------------------------------------------------------------------------
+--Data Studio - SQL Statement to insert data into the REF_LOCATIONS columns;
+INSERT INTO FGC_PROJ_HOURS_DEV.REF_LOCATIONS
+( LOCATION_ID, LOCATION_NAME, CREATED_BY, CREATED_TMS, VALID_FROM_TMS )
+VALUES (
+  '55846354-dd30-42c1-b348-7164c60519bf', --LOCATION_ID
+  'Burwell',                              --LOCATION_NAME
+  '600520D',                                     --CREATED_BY
+  '2018-04-02 11:30:00.0',                --CREATED_TMS
+  '2018-04-02 11:30:00.0'                                      --VALID_FROM_TMS
+);
+
+
+
+
+
