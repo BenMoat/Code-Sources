@@ -106,7 +106,7 @@ bookstore//book = Selects all book elements that are descendan of the bookstore 
 //@lang         = Selects all attributes that are named "lang"
 
 <!--Selecting Several Paths
-	By using the | operator in an XPath expression you can select several paths.
+	By using the "|" operator in an XPath expression you can select several paths.
 	In the table below we have listed some path expressions and the result of the expressions
 	Path Expressions = Results-->
 //book/title | //book/price     = Selects all the title AND price elements of all book elements
