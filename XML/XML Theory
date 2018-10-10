@@ -1,0 +1,97 @@
+<!--XML Prolog
+	UTF-8 is the default character encoding for XML documents-->
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--XML documents are formed as element trees.
+	An XML tree starts at a root element and branches from the root to child elements.
+	All elements can have sub (child) elements-->
+<root>
+	<child>
+		<subchild>....</subchild>
+	</child>
+</root>
+
+<!--Entity References
+	"<" inside an XML element will generate an error because the parser inteprets it as the start of a new element
+	For example:-->
+<message> salary < 1000 </message>
+
+<!--To avoid the error, replace it with an entity reference:-->
+<message> salary &lt; 1000 </message>
+
+<!--The 5 predefined XML entity references
+	Expression = sign-->
+&lt;    = <
+&gt;    = >
+&amp;   = &
+&apos;  = '
+&quote; = "
+
+<!--Empty XML element-->
+<element></element>
+<!--Or-->
+<element />
+
+<!--XML Naming Rules
+	Style = Example + Description-->
+Lower Case  = <example>    + All letters lower case
+Upper Case  = <EXAMPLE>    + All letters upper case
+Underscore  = <first_name> + Underscore separates words
+Pascal Case = <FirstName>  + Uppercase first letter in each word	Camel Case  = <firstName>  + Uppercase first letter in each word except first (like JS)
+
+<!--XML Attributes-->
+<person gender="female">
+<!--Or-->
+<person gender='female'>
+
+<!--If the attribute value itself contains double quotes-->
+<person name='Ben "S" Moat'>
+
+<!--Avoiding XML conflicts-->
+<h:table>
+	<h:tr>
+		<h:td>Apples</h:td>
+		<h:td>Pears</h:td>
+	</h:tr>
+</h:table>
+
+<!--Using a different name-->
+<f:table>
+	<f:tr>
+		<f:td>Nissan</f:td>
+		<f:td>BMW</f:td>
+	</f:tr>
+</f:table>
+
+<!--Sending an XMLHttpRequest
+	Creating the object-->
+var xhttp = new XMLHttpRequest();
+	<!--onreadystatechange property specifies a function to be executed every time the status of the
+	XMLHttpRequest object changes-->
+xhttp.onreadystatechange = function();
+
+<!--When ReadyState property is 4 and the status property is 200, the response is ready-->
+if (this.ReadyState == 4 && this.status == 200)
+
+<!--Value = State + Description-->
+0 = UNSENT           + Client has been created. open() not called yet
+1 = OPENED           + open() has been called
+2 = HEADERS_RECEIVED + send() has been called, and headers and status are available
+3 = LOADING          + Downloading; "responseText" holds partial data
+4 = DONE             + The operation is complete
+
+<!--The responseText property returns the server respeonse as a text string
+	The text string can be used to update a web page-->
+
+
+
+
+
+
+
+
+
+
+
+
+
