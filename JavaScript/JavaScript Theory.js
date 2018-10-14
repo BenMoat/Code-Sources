@@ -26,3 +26,4 @@ function myFunction() {
 	JavaScript statements are composed of: Values, Operators, Expressions, Keywords*/
 document.getElementById("demo").innerHTML = "Hello World";
 
+//testing for mac
