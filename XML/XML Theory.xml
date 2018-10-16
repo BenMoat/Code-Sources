@@ -85,6 +85,12 @@ if (this.ReadyState == 4 && this.status == 200)
 
 
 
+	tw.local.tmpNodeList = tw.local.sql_Result.xpath
+	('/resultSet/record/column[@name="REQUEST_TMS"] | /resultSet/record/column[@name="REQUEST_ID"]');
+
+
+
+
 
 
 

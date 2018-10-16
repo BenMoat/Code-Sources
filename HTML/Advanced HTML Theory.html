@@ -1,0 +1,120 @@
+<!--Iframe Syntax
+	An iframe is used to display a web page within a web page-->
+<iframe src="URL here" heights="200" width="300" style="border:none;"></iframe>
+
+<!--HTML Meta Element
+	HTML = Description-->
+<meta charsets="UTF-8">                                     = The character set used.
+<meta name="description" content="A Meta Example">          = The webpage description
+<meta name="keywords" content="HTML, CSS, XML, JavaScript"> = Keywords for search engines
+<meta name="author" contents="Joe Bloggs">                  = Author or a page
+<meta http-equiv="refresh" content="30">                    = Refresh document every 30 seconds
+
+<!--Using the viewport function
+	The viewport is the user's visible area of a webpage. It will vary depending on the dvice-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--HTML computer code elements
+	Highlights the "Control + S"-->
+<p>Save the document by pressing <kbd>Ctrl + S</kbd></p>
+<p>If you enter the wrong data, the application will return <samp>Error!</samp></p>
+
+<!--Useful HTML-supported entities
+	Symbol + Number = Entity + Description-->
+© + &#169;  = &copy;  + copyright sign
+® + &#174;  = &reg;   + registered sign
+€ + &#8364; = &euro;  + euro sign
+™ + &#8482; = &trade; + trademark sign
+
+<!--Precaution to take when website data isn't parsed through an SSL certificate
+	The method attribute specifies the HTTP method (GET or POST) to be used when submitting the form data-->
+<form action="/action_page.php" method="get">
+OR:
+<form action="/action_page.php" method="post">
+
+<!--Grouping Form Data with <fieldset>
+	The fieldset elemnt is used to group related data in a form
+	The legend element defines a caption for the <fieldset> element-->
+<form action="/action_page.php">
+	<fieldset>
+		<legend>Personal information:</legend>
+			First name:<br>
+		<input type="text" name="firstname" value="Mickey"><br>
+			Last name:<br>
+		<input type="text" name="lastname" value="Mouse"><br><br>
+		<input type="submit" value="Submit">
+	</fieldset>
+</form>
+
+<!--Form attributes-->
+accept-charset = specifies the charset used in the submitted form            (default: the page charset)
+action         = specifies an address (url) where to submit the form         (default: the submitting page)
+autocomplete   = specifies if the browser should autocomplete the form       (default: on)
+enctype        = specifies the encoding of the submitted data                (default: is url-encoded)
+method         = specifies the HTTP method used when submitting the form     (default: GET)
+name           = specifies a name used to identify the form                  (for DBOM usage: document.forms.name)
+target         = specifies the target of the address in the action attribute (default: _self)
+novalidate     = specifies that the browser should not validate the form
+
+<!--The <select> element defines a dropdown list-->
+<select name="cars"> <!--add "multiple" for multiple selections-->
+	<option value="volvo">Volvo</option>
+	<option value="mercedes">Mercedes</option>
+	<option value="bmw">BMW</option>
+	<option value="ferrari">Ferrari</option>
+</select>
+
+<!--Using HTML geolocation
+	The getCurrentPosition() method is used to return the user's position-->
+<script type="text/javascript">
+	var x = document.getElementById("demo")
+	function getLocation() {
+		if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showPosition);
+		} else {
+			x.innerHTML = "Geolocation is not supported by this browser.";
+		}
+	}
+	function showPosition(position) {
+		x.innerHTML = "Latitude" + position.coords.latitude +
+		"<br>Longitude: " + position.coords.longitude;
+	}
+</script>
+
+<!--Displaying the results in a map-->
+<script type="text/javascript">
+	function showPosition(position) {
+		var latlon  = position.coords.latitude + "," + position.coords.longitude;
+		var img_url = "https://maps.googleapis.com/maps/api/staticmap?center=
+    	"+latlon+"&zoom=14&size=400x300&sensor=false&key=YOUR_:KEY";
+		}
+		document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
+</script>
+
+<!--HTML drag and drop-->
+<script type="text/javascript">
+	function allowDrop(ev) {
+	ev.preventDefault();
+	}
+	function drag(ev) {
+		ev.dataTransfer.setData("text", ev.target.id);
+	}
+	function drop(ev) {
+		ev.preventDefault();
+		var data = ev.dataTransfer.getData("text");
+		ev.target.appendChild(document.getElementById(data));
+	}
+</script>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<img id="drag1" src="img_logo.gif" draggable="true">
+<ondragstart="drag(event)" width="336" height="69">
+
+<!--HTML SSE (Server-Sent Events)
+	Allows a web page to get updates from a server-->
+<script type="text/javascript">
+	var source = new EventSource("demo_sse.php");
+	source.onmessage = function(event) {
+		document.getElementById("result").innerHTML += event.data + "<br>";
+	}
+</script>
