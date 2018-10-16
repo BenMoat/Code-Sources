@@ -1,0 +1,25 @@
+<!--AJAX example-->
+<div id="demo">
+	<h2>AJAX will change this text</h2>
+	<button type="button" onClick="loadDoc()">Change Content</button>
+</div>
+<!--JavaScript for loadDoc-->
+<script type="text/javascript">
+function loadDoc() {
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("demo").innerHTML = this.responseText;
+		}
+	};
+	xhttp.open("GET", "ajax_info.txt", true);
+	xhttp.send();
+}
+</script>
+
+<!--Using GET or POST-->
+- GET is simpler and faster
+- Use POST requests when a cached file is not an option
+	- Sending a large amount of data to the server
+	- Sending user input
+
