@@ -2,7 +2,7 @@
 comment, and document nodes.
 
 	<!--Loading an XML Document
-		Using an XMLHttpRequest object to load XML docuemnts is supported in all modern browsers-->
+		Using an XMLHttpRequest object to load XML documents is supported in all modern browsers-->
 	var xmlHttp = new XMLHttpRequest();
 
 	<!--Selecting Nodes
