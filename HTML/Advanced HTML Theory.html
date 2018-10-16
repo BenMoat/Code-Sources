@@ -64,19 +64,58 @@ novalidate     = specifies that the browser should not validate the form
 	<option value="ferrari">Ferrari</option>
 </select>
 
+<!--Using HTML geolocation
+	The getCurrentPosition() method is used to return the user's position-->
+<script type="text/javascript">
+	var x = document.getElementById("demo")
+	function getLocation() {
+		if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showPosition);
+		} else {
+			x.innerHTML = "Geolocation is not supported by this browser.";
+		}
+	}
+	function showPosition(position) {
+		x.innerHTML = "Latitude" + position.coords.latitude +
+		"<br>Longitude: " + position.coords.longitude;
+	}
+</script>
+
+<!--Displaying the results in a map-->
+<script type="text/javascript">
+	function showPosition(position) {
+		var latlon  = position.coords.latitude + "," + position.coords.longitude;
+		var img_url = "https://maps.googleapis.com/maps/api/staticmap?center=
+    	"+latlon+"&zoom=14&size=400x300&sensor=false&key=YOUR_:KEY";
+		}
+		document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
+</script>
+
+<!--HTML drag and drop-->
+<script type="text/javascript">
+	function allowDrop(ev) {
+	ev.preventDefault();
+	}
+	function drag(ev) {
+		ev.dataTransfer.setData("text", ev.target.id);
+	}
+	function drop(ev) {
+		ev.preventDefault();
+		var data = ev.dataTransfer.getData("text");
+		ev.target.appendChild(document.getElementById(data));
+	}
+</script>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<img id="drag1" src="img_logo.gif" draggable="true">
+<ondragstart="drag(event)" width="336" height="69">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!--HTML SSE (Server-Sent Events)
+	Allows a web page to get updates from a server-->
+<script type="text/javascript"
+	var source = new EventSource("demo_sse.php");
+	source.onmessage = function(event) {
+		document.getElementById("result").innerHTML += event.data + "<br>";
+	}
+</script>
