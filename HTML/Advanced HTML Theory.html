@@ -29,7 +29,7 @@
 <!--Precaution to take when website data isn't parsed through an SSL certificate
 	The method attribute specifies the HTTP method (GET or POST) to be used when submitting the form data-->
 <form action="/action_page.php" method="get">
-OR:
+<!--OR:-->
 <form action="/action_page.php" method="post">
 
 <!--Grouping Form Data with <fieldset>
@@ -41,12 +41,14 @@ OR:
 			First name:<br>
 		<input type="text" name="firstname" value="Mickey"><br>
 			Last name:<br>
-		<input type="text" name="lastname" value="Mouse"><br>
+		<input type="text"   name="lastname"  value="Mouse"><br>
 		<input type="submit" value="Submit">
 	</fieldset>
 </form>
 
 <!--Form attributes-->
+accept-charset = specifies the charset used in the submitted form            (default: the page charset)
+accept-charset = specifies the charset used in the submitted form            (default: the page charset)
 accept-charset = specifies the charset used in the submitted form            (default: the page charset)
 action         = specifies an address (url) where to submit the form         (default: the submitting page)
 autocomplete   = specifies if the browser should autocomplete the form       (default: on)
