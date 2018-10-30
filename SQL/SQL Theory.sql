@@ -1,4 +1,3 @@
-
 --Directory change test
 --'SELECT' Example (S)
 	/*Extracts ALL data from a database*/
