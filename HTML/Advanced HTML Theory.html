@@ -4,14 +4,14 @@
 
 <!--HTML Meta Element
 	HTML = Description-->
-<meta charsets="UTF-8">                                     = The character set used.
-<meta name="description" content="A Meta Example">          = The webpage description
-<meta name="keywords" content="HTML, CSS, XML, JavaScript"> = Keywords for search engines
-<meta name="author" contents="Joe Bloggs">                  = Author or a page
-<meta http-equiv="refresh" content="30">                    = Refresh document every 30 seconds
+<meta charsets="UTF-8">                                          = The character set used.
+<meta name="description"   content="A Meta Example">             = The webpage description
+<meta name="keywords"      content="HTML, CSS, XML, JavaScript"> = Keywords for search engines
+<meta name="author"        contents="Joe Bloggs">                = Author or a page
+<meta http-equiv="refresh" content="30">                         = Refresh document every 30 seconds
 
 <!--Using the viewport function
-	The viewport is the user's visible area of a webpage. It will vary depending on the dvice-->
+	The viewport is the user's visible area of a webpage. It will vary depending on the device-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!--HTML computer code elements
@@ -29,11 +29,11 @@
 <!--Precaution to take when website data isn't parsed through an SSL certificate
 	The method attribute specifies the HTTP method (GET or POST) to be used when submitting the form data-->
 <form action="/action_page.php" method="get">
-OR:
+<!--OR:-->
 <form action="/action_page.php" method="post">
 
 <!--Grouping Form Data with <fieldset>
-	The fieldset elemnt is used to group related data in a form
+	The fieldset element is used to group related data in a form
 	The legend element defines a caption for the <fieldset> element-->
 <form action="/action_page.php">
 	<fieldset>
@@ -41,12 +41,14 @@ OR:
 			First name:<br>
 		<input type="text" name="firstname" value="Mickey"><br>
 			Last name:<br>
-		<input type="text" name="lastname" value="Mouse"><br><br>
+		<input type="text"   name="lastname"  value="Mouse"><br>
 		<input type="submit" value="Submit">
 	</fieldset>
 </form>
 
 <!--Form attributes-->
+accept-charset = specifies the charset used in the submitted form            (default: the page charset)
+accept-charset = specifies the charset used in the submitted form            (default: the page charset)
 accept-charset = specifies the charset used in the submitted form            (default: the page charset)
 action         = specifies an address (url) where to submit the form         (default: the submitting page)
 autocomplete   = specifies if the browser should autocomplete the form       (default: on)
@@ -73,7 +75,7 @@ novalidate     = specifies that the browser should not validate the form
 				navigator.geolocation.getCurrentPosition(showPosition);
 		} else {
 			x.innerHTML = "Geolocation is not supported by this browser.";
-		}
+			}
 	}
 	function showPosition(position) {
 		x.innerHTML = "Latitude" + position.coords.latitude +
