@@ -15,6 +15,7 @@ document.getElementById("demo").style.display = "none";
 //Inline JavaScript in HTML
 <script>
   document.getElementById("demo").innerHTML = "JavaScript here";
+  document.getElementById("shh").innerHTML  = "JavaScript here";
 </script>
 
 //External JavaScript
